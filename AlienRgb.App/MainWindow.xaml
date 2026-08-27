@@ -1,0 +1,89 @@
+<Window x:Class="AlienRgb.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AlienRgb.App"
+        Title="AlienRgb — Alienware x14"
+        Icon="Assets/alienhead.ico"
+        Width="560" Height="480"
+        MinWidth="520" MinHeight="420"
+        Background="{StaticResource BgBrush}"
+        WindowStartupLocation="CenterScreen"
+        StateChanged="OnWindowStateChanged"
+        Closing="OnWindowClosing">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,12">
+            <TextBlock Text="AlienRgb" FontSize="22" FontWeight="Bold" Foreground="{StaticResource AccentBrush}"/>
+            <TextBlock x:Name="DeviceLabel" Text="  —  detecting device..." FontSize="13"
+                       VerticalAlignment="Bottom" Margin="8,0,0,3" Foreground="{StaticResource DimTextBrush}"/>
+        </StackPanel>
+
+        <ItemsControl Grid.Row="1" x:Name="ZoneList">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:ZoneVm}">
+                    <Border Background="{StaticResource PanelBrush}" CornerRadius="6" Padding="12,8" Margin="0,0,0,8">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="56"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" FontSize="14" VerticalAlignment="Center"/>
+
+                            <Border Grid.Column="1" Width="40" Height="40" CornerRadius="6"
+                                    BorderBrush="#2C3A4E" BorderThickness="1"
+                                    Background="{Binding PreviewBrush}" VerticalAlignment="Center"/>
+
+                            <Grid Grid.Column="2" Margin="12,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/><RowDefinition/><RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="16"/><ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="R" Foreground="#FF6B6B" FontSize="11"/>
+                                <Slider Grid.Row="0" Grid.Column="1" Minimum="0" Maximum="255" Value="{Binding R}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="G" Foreground="#69DB7C" FontSize="11"/>
+                                <Slider Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="255" Value="{Binding G}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="B" Foreground="#74C0FC" FontSize="11"/>
+                                <Slider Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="255" Value="{Binding B}" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <TextBox Grid.Column="3" Text="{Binding Hex, UpdateSourceTrigger=LostFocus}"
+                                     VerticalAlignment="Center" FontFamily="Consolas" MaxLength="7"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,4,0,10">
+            <CheckBox x:Name="LiveApply" Content="Live apply" IsChecked="True" VerticalAlignment="Center"/>
+            <Button Content="Apply now" Margin="14,0,0,0" Click="OnApplyClick"/>
+            <Button Content="All zones same as Keyboard" Margin="10,0,0,0" Click="OnSyncAllClick"/>
+            <TextBlock x:Name="StatusLabel" Margin="14,0,0,0" VerticalAlignment="Center"
+                       Foreground="{StaticResource DimTextBrush}"/>
+        </StackPanel>
+
+        <Border Grid.Row="3" Background="{StaticResource PanelBrush}" CornerRadius="6" Padding="12,10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Profile:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <ComboBox x:Name="ProfileCombo" VerticalAlignment="Center" SelectionChanged="OnProfileSelected"/>
+                <TextBox x:Name="ProfileNameBox" Width="110" Margin="10,0,0,0" VerticalAlignment="Center"
+                         ToolTip="Name for saving the current colors as a profile"/>
+                <Button Content="Save" Margin="6,0,0,0" Click="OnSaveProfileClick"/>
+                <Button Content="Delete" Margin="6,0,0,0" Click="OnDeleteProfileClick"/>
+                <CheckBox x:Name="RunAtLogin" Content="Start with Windows (minimized)" Margin="14,0,0,0"
+                          VerticalAlignment="Center" Checked="OnRunAtLoginChanged" Unchecked="OnRunAtLoginChanged"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

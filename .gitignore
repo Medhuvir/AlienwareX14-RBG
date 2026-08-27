@@ -1,0 +1,11 @@
+# Build output
+bin/
+obj/
+
+# Published output — self-contained binaries plus per-machine data
+# (publish/data holds local profiles, first-run marker, and resume.log)
+publish/
+
+# User-specific IDE files
+.vs/
+*.user

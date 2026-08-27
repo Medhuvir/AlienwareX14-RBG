@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlienRgb.Core", "AlienRgb.Core\AlienRgb.Core.csproj", "{9757C224-FF5B-40A0-8406-882CE94ACA4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlienRgb.Cli", "AlienRgb.Cli\AlienRgb.Cli.csproj", "{B05E28C7-E9AF-4052-9CDE-2024BA0F0302}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlienRgb.App", "AlienRgb.App\AlienRgb.App.csproj", "{F980157E-46EE-4874-95E0-EBA68AFA7D65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9757C224-FF5B-40A0-8406-882CE94ACA4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9757C224-FF5B-40A0-8406-882CE94ACA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9757C224-FF5B-40A0-8406-882CE94ACA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9757C224-FF5B-40A0-8406-882CE94ACA4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B05E28C7-E9AF-4052-9CDE-2024BA0F0302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B05E28C7-E9AF-4052-9CDE-2024BA0F0302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B05E28C7-E9AF-4052-9CDE-2024BA0F0302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B05E28C7-E9AF-4052-9CDE-2024BA0F0302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F980157E-46EE-4874-95E0-EBA68AFA7D65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F980157E-46EE-4874-95E0-EBA68AFA7D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F980157E-46EE-4874-95E0-EBA68AFA7D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F980157E-46EE-4874-95E0-EBA68AFA7D65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
