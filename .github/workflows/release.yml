@@ -1,0 +1,53 @@
+name: Release
+
+# Push a tag like "v1.0.0" to build and publish a GitHub Release with a ready-to-run
+# zip attached (no .NET SDK needed by whoever downloads it — see README's Build section
+# for why the publish is self-contained). Use the "Run workflow" button for a one-off
+# test build without cutting a release — it uploads the same zip as a workflow artifact
+# instead.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish AlienRgb.App (self-contained, win-x64)
+        run: dotnet publish AlienRgb.App -c Release -r win-x64 --self-contained true -o publish
+
+      - name: Publish AlienRgb.Cli (self-contained, win-x64)
+        run: dotnet publish AlienRgb.Cli -c Release -r win-x64 --self-contained true -o publish
+
+      - name: Zip publish output
+        shell: pwsh
+        run: Compress-Archive -Path publish/* -DestinationPath AlienRgb-win-x64.zip
+
+      # Manual "Run workflow" runs (no tag) just produce a downloadable artifact from the
+      # Actions run summary, so you can sanity-check the build without creating a release.
+      - name: Upload build artifact
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: AlienRgb-win-x64
+          path: AlienRgb-win-x64.zip
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: AlienRgb-win-x64.zip
+          generate_release_notes: true

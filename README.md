@@ -46,8 +46,9 @@ didn't) is welcome.
 ## Quick start
 
 1. Make sure **Alienware Command Center is closed** (see [Important caveats](#important-caveats)).
-2. Build it (see [Build](#build) — there's no pre-built release yet, so this currently
-   requires the .NET 8 SDK once, to compile).
+2. Grab the latest zip from [Releases](../../releases) and extract it — no .NET
+   install needed, it's self-contained. (No release yet, or want to build from source
+   instead? See [Build](#build).)
 3. Run `AlienRgb.App.exe`. First launch it opens visibly so you can set colors; after
    that, closing to the tray (minimize) keeps it running quietly.
 4. If your lights don't match the default zone names, jump to
@@ -140,7 +141,9 @@ button). If your unit's lights don't match those names:
 
 ## Build
 
-Requires the .NET 8 SDK.
+Only needed if you're not using a [Releases](../../releases) zip — e.g. you're
+contributing, or want to build from source for another architecture. Requires the .NET 8
+SDK.
 
 Publish **self-contained** (embeds the runtime, so it never depends on `PATH` or
 `DOTNET_ROOT` being configured correctly wherever it's launched from — Scheduled Tasks
@@ -159,6 +162,13 @@ plain self-contained output folder is what's actually been verified working end 
 The output folder (`publish\`) is what you copy/zip to distribute or install for another
 account — everything needed is in there, plus a `data\` folder that's created
 automatically on first run.
+
+**Cutting a release:** push a tag matching `v*.*.*` (e.g. `git tag v1.0.0 && git push
+origin v1.0.0`) and [`.github/workflows/release.yml`](.github/workflows/release.yml) runs
+the exact commands above on a clean Windows runner and attaches the resulting zip to a new
+GitHub Release automatically. Use the workflow's manual "Run workflow" button to sanity-
+check a build without cutting a release — it uploads the same zip as a plain build
+artifact instead of publishing it.
 
 ## Sleep/wake reliability
 
