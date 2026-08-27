@@ -1,4 +1,7 @@
-// AlienFX APIv4 (34-byte HID reports) device driver for the Alienware x14 (VID 187C, PID 0550).
+// AlienFX APIv4 (34-byte HID reports) device driver. Confirmed working on the Alienware
+// x14's "AW-ELC" embedded lighting controller (VID 0x187C), which uses this protocol
+// generation; other Alienware/Dell G-series hardware using the same 34-byte report length
+// should work identically since detection here is by VID + report length, not a fixed PID.
 // Protocol ported from alienfx-tools' AlienFX-SDK (MIT), https://github.com/T-Troll/alienfx-tools
 // Copyright (c) T-Troll and contributors; C# port for local use.
 

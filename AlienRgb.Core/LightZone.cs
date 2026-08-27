@@ -25,7 +25,12 @@ public static class ZoneMap
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
     };
 
-    /// <summary>Verified zone map for this Alienware x14 (discovered 2026-08 via color sweep on IDs 0-7).</summary>
+    /// <summary>Default zone map for the Alienware x14 (discovered via a color sweep on IDs 0-7 on one
+    /// unit in Aug 2026). Light IDs are assigned by firmware, so this should match any x14 with the
+    /// same AW-ELC controller — but if your lights don't match these names, override it: run
+    /// `AlienRgb.Cli.exe flash &lt;id&gt;` for IDs 0-8 to see which physical light blinks for each ID,
+    /// then create data/zones.json next to the exe with your own [{"Id":.., "Name":".."}, ...] list.
+    /// Both the CLI and GUI read that file automatically if present.</summary>
     public static List<LightZone> Defaults() =>
     [
         new() { Id = 1, Name = "Alien Head" },
